@@ -41,9 +41,14 @@ const About = ({isDarkMode}) => {
             whileInView={{opacity: 1}}
             transition={{duration: 0.6, delay: 0.8}}
             className='flex-1'>
-                <p className='mb-10 max-w-2xl font-Ovo'
-                >I am an experienced Frontend Developer with over a decade of professional expertise in the field. Throughout my career, I have had the privilege of collaborating with prestigious organizations, contributing to their success and growth.</p>
+                <p className="mb-10 max-w-2xl font-Ovo">
+                   I help companies scale faster and operate smoother by building rock-solid cloud infrastructure.
+                   With over a decade in DevOps, I’ve designed, automated, and optimized cloud environments for 
+                   high-growth businesses.<br></br> I specialize in <strong>Terraform, Multi-cloud infrastructure, Kubernetes, and CI/CD</strong>
+                   —streamlining deployments, leading enterprise release management, and mentoring teams to execute at the highest level.<br></br> <strong>Bottom line:</strong> I make tech stacks more efficient, reliable, and scalable so businesses can grow without bottlenecks.
+                </p>
 
+                   
                 <motion.ul
                 initial={{opacity: 0}}
                 whileInView={{opacity: 1}}

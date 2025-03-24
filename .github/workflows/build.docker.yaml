@@ -1,0 +1,17 @@
+name: build and publish docker image
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build and publish docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/david_front-end_site:latest .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/myapp:latest
