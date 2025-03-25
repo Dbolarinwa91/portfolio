@@ -18,6 +18,6 @@ jobs:
           docker build -t davidbolarinwa/david_front-end_site:latest .
       - name: push image to docker hub
         run: |
-          docker login -u davidbolarinwa -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker login -u davidbolarinwa --password ${{ secrets.DOCKERHUB_TOKEN }}
           docker push davidbolarinwa/david_front-end_site:latest
           
