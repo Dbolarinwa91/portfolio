@@ -59,9 +59,9 @@ resource "aws_route_table_association" "subnet_3_association" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 20.0"
+  version = "~> 20.00"
 
-  cluster_name    = "devops-capstone-project"
+  cluster_name    = "devops-David-site-project"
   cluster_version = "1.28"
 
   cluster_endpoint_public_access = true
@@ -73,7 +73,7 @@ module "eks" {
   eks_managed_node_groups = {
     green = {
       min_size       = 1
-      max_size       = 1
+      max_size       = 2
       desired_size   = 1
       instance_types = ["t3.medium"]
     }
