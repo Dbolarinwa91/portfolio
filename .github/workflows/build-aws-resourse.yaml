@@ -65,7 +65,12 @@ jobs:
 
     - name: checkout 
       uses: actions/checkout@v4
-
+    
+    - name: Verify Infrastructure Directory
+      run: |
+          ls -la
+          [ -d infrastructure ] && echo "Directory exists" || echo "Directory missing"
+          
     - name: cd to infrastucture
       run: cd infrastucture
     - name: list all the files in the directory
