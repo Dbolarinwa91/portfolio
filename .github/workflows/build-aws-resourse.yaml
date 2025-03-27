@@ -83,7 +83,8 @@ jobs:
           terraform --version # Print the current version of Terraform
           pwd # Print the current working directory
           ls -la
-          [ -d infrastructure ] && echo "Directory exists" || echo "Directory missing"
+          terraform init 
+          terraform plan
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
