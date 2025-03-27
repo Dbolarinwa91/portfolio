@@ -77,12 +77,15 @@ jobs:
       with:
           terraform_version: 1.2.5
 
+
+
     - name: Verify Infrastructure Directory
       working-directory: infrastructure
       run: |
           terraform --version # Print the current version of Terraform
           pwd # Print the current working directory
           ls -la
+          aws sts get-caller-identity
           terraform init 
           terraform validate 
           terraform plan
