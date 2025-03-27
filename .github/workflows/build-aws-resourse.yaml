@@ -79,6 +79,7 @@ jobs:
       run: |
         
           terraform init
+          pwd
           # terraform init -input=false -backend-config="organization=${{ secrets.TF_ORG_NAME }}" -backend-config="workspaces=name=${{ secrets.TF_WORKSPACE_NAME }}" -reconfigure
       
 
