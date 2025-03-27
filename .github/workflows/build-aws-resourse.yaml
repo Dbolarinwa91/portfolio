@@ -79,7 +79,7 @@ jobs:
 
     - name: Verify Infrastructure Directory
       run: |
-          terrafrom --version # Print the current version of Terraform
+          terraform --version # Print the current version of Terraform
           pwd # Print the current working directory
           ls -la
           [ -d infrastructure ] && echo "Directory exists" || echo "Directory missing"
