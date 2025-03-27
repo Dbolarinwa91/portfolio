@@ -68,11 +68,11 @@ jobs:
     
     - name: Verify Infrastructure Directory
       run: |
+          pwd # Print the current working directory
           ls -la
           [ -d infrastructure ] && echo "Directory exists" || echo "Directory missing"
-          
-    - name: cd to infrastucture
-      run: cd infrastucture
+
+
     - name: list all the files in the directory
       run: ls -la
 
