@@ -46,7 +46,7 @@ name: Terraform
 on:
   push:
     branches:
-      - main
+      - master
     
 
 
@@ -65,7 +65,7 @@ jobs:
 
     - name: checkout 
       uses: actions/checkout@v4
-      
+
     - name: cd to infrastucture
       run: cd infrastucture
     - name: list all the files in the directory
