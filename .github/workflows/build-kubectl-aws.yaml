@@ -123,19 +123,24 @@ jobs:
        fi
     - name: Applying Kubernetes manifests
       run: |
-       echo "📦 Applying Kubernetes manifests..."
-       if kubectl apply -f deployment.yaml; then
-       echo "✅ Deployment successful!"
-       else
-       echo "❌ Deployment failed!" >&2
-       exit 1
-       fi   
-      
-       echo "🔍 Verifying deployment..."
-       if ! kubectl get pods | grep -q 'Running'; then
-       echo "❌ Error: No running pods found after deployment!" >&2
-       exit 1
-       fi
-       echo "✅ Deployment completed successfully!
+        echo "📦 Applying Kubernetes manifests..."
+        if kubectl apply -f deployment.yaml && kubectl apply -f service.yaml; then
+        echo "✅ Manifests applied successfully!"
+        else
+        echo "❌ Failed to apply Kubernetes manifests!" >&2
+        exit 1
+        fi
+
+        echo "🔍 Verifying deployment..."
+        # Wait for the deployment to be available (up to 60 seconds)
+        if kubectl wait --for=condition=available --timeout=60s deployment/david-front-end-site; then
+        echo "✅ Deployment is available!"
+        else
+        echo "❌ Deployment is not available!" >&2
+        kubectl get pods -o wide  # Show details of failed pods
+        kubectl logs -l app=david-front-end-site --tail=50  # Fetch logs for debugging
+        exit 1
+        fi
+        echo "✅ Deployment completed successfully!"ly!
 
 
