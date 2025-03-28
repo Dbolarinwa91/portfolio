@@ -90,7 +90,7 @@ jobs:
           terraform --version # Print the current version of Terraform
           pwd # Print the current working directory
           ls -la
-          terraform init 
+          terraform init -migrate-state
           terraform validate 
           terraform plan
           terraform apply -auto-approve

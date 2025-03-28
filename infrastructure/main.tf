@@ -1,4 +1,4 @@
-
+/*
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -80,12 +80,12 @@ module "eks" {
     }
   }
 }
-
+*/ 
 /*  [Making a new bucket ] depends_on = [aws_instance.web_server] */
-/*module "s3_bucket" {
+module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "devops-statefile-david-site-project-123456"
+  bucket = "devops-statefile-david-site-project-1234567"
   acl    = "private"
   force_destroy = false
   control_object_ownership = true
@@ -95,4 +95,3 @@ module "eks" {
     enabled = true
   }
  }
-*/ 
