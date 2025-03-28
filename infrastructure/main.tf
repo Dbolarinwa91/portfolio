@@ -12,13 +12,19 @@ resource "aws_subnet" "subnet_1" {
   cidr_block              = "10.0.0.0/20"
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
+  tags = {
+    Name = "subnet_1-devops-David-site-project"
 }
+|}
 
 resource "aws_subnet" "subnet_2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.16.0/20"
   availability_zone       = "us-east-1c"
   map_public_ip_on_launch = true
+    tags = {
+    Name = "subnet_2-devops-David-site-project"
+}
 }
 
 resource "aws_subnet" "subnet_3" {
@@ -26,10 +32,16 @@ resource "aws_subnet" "subnet_3" {
   cidr_block              = "10.0.32.0/20"
   availability_zone       = "us-east-1d"
   map_public_ip_on_launch = true
+    tags = {
+    Name = "subnet_3-devops-David-site-project"
+}
 }
 
 resource "aws_internet_gateway" "internet_gw" {
   vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "internet_gw-devops-David-site-project"
+  }
 }
 
 resource "aws_route_table" "route_table" {
@@ -38,6 +50,7 @@ resource "aws_route_table" "route_table" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.internet_gw.id
+    
   }
 
   route {
