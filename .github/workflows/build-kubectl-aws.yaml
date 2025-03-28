@@ -83,7 +83,25 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ secrets.AWS_REGION }}
           role-session-name: GitHubActions
-      
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v2
+    - name: Install kubectl
+      run: |
+        set -e  # Exit immediately if a command exits with a non-zero status
+        echo "Downloading kubectl..."
+        curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+
+        echo "Making kubectl executable..."
+        chmod +x kubectl
+
+        echo "Moving kubectl to /usr/local/bin/"
+        sudo mv kubectl /usr/local/bin/kubectl
+
+        echo "Verifying installation..."
+        if ! command -v kubectl &> /dev/null; then
+        echo "Error: kubectl installation failed!" >&2
+        exit 1
+        fi
+
+        echo "kubectl installed successfully!"
+
+
+
