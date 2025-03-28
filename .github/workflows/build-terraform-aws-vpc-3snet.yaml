@@ -85,7 +85,6 @@ jobs:
           role-session-name: GitHubActions
 
     - name: Verifying and Applying Infrastructure Directory
-      if: github.ref == 'refs/heads/"master"' && github.event_name == 'push'
       working-directory: infrastructure
       run: |
           terraform --version # Print the current version of Terraform
