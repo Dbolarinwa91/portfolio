@@ -102,7 +102,7 @@ jobs:
         fi
 
         echo "kubectl installed ✅ Successfully!"
-        
+
     - name: Update Kubeconfig
       run: |
           echo "Updating kubeconfig for EKS cluster..."
@@ -112,6 +112,15 @@ jobs:
             echo "❌ Error: Failed to update kubeconfig!" >&2
             exit 1
           fi    
+    - name: Check Kubeconfig and Cluster Info
+      run: |
+       echo "Checking kubeconfig for EKS cluster-info..."
+       if kubectl cluster-info; then
+       echo "✅ Successfully updated kubeconfig."
+       else
+       echo"❌ Error: Failed to update kubeconfig!" >&2
+       exit 1
+       fi
 
 
 
