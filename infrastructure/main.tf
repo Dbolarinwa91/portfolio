@@ -15,7 +15,7 @@ resource "aws_subnet" "subnet_1" {
   tags = {
     Name = "subnet_1-devops-David-site-project"
 }
-|}
+}
 
 resource "aws_subnet" "subnet_2" {
   vpc_id                  = aws_vpc.main.id
