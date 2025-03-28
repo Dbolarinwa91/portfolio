@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: david_front-end_site
+  name: david_front-end-site
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: david_front-end_site
+      app: david_front-end-site
   template:
     metadata:
       labels:
-        app: david_front-end_site
+        app: david_front-end-site
     spec:
       containers:
-      - name: david-front-end_site
+      - name: david-front-end-site
         imagePullPolicy: Always
         image: davidbolarinwa/david_front-end_site:latest
         ports:
