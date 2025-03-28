@@ -121,6 +121,21 @@ jobs:
        echo"❌ Error: Failed to update kubeconfig!" >&2
        exit 1
        fi
-
+    - name: Applying Kubernetes manifests
+      run: |
+       echo "📦 Applying Kubernetes manifests..."
+       if kubectl apply -f deployment.yaml; then
+       echo "✅ Deployment successful!"
+       else
+       echo "❌ Deployment failed!" >&2
+       exit 1
+       fi   
+      
+       echo "🔍 Verifying deployment..."
+       if ! kubectl get pods | grep -q 'Running'; then
+       echo "❌ Error: No running pods found after deployment!" >&2
+       exit 1
+       fi
+       echo "✅ Deployment completed successfully!
 
 
