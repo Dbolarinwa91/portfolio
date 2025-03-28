@@ -59,7 +59,7 @@ env:
 
 jobs:
  terraform:
-    name: 'Terraform'
+    name: 'Build and deploy kubectl aws'
     runs-on: ubuntu-latest
     defaults:
       run:
