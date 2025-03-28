@@ -87,7 +87,7 @@ module "s3_bucket" {
 
   bucket = "devops-statefile-david-site-project-123456"
   acl    = "private"
-
+  force_destroy = false
   control_object_ownership = true
   object_ownership         = "ObjectWriter"
 
