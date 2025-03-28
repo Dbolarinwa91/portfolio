@@ -1,34 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: david-front-end-site  # Fixed name (removed underscores)
+  name: david-front-end-site  
   labels:
-    app: david-front-end-site  # Fixed name
+    app: david-front-end-site 
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: david-front-end-site  # Fixed name
+      app: david-front-end-site 
   template:
     metadata:
       labels:
-        app: david-front-end-site  # Fixed name
+        app: david-front-end-site  
     spec:
-      containers:  # Corrected indentation
-      - name: david-front-end-site  # Fixed name
-      image: davidbolarinwa/david-front-end-site:latest  # Fixed name
-      ports:
-      - containerPort: 3000  # Fixed indentation
-
+      containers: 
+      - name: david-front-end-site  
+        image: davidbolarinwa/david-front-end-site:latest 
+        ports:
+          - containerPort: 3000 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: david-front-end-site  # Fixed name
+  name: david-front-end-site 
 spec:
   type: LoadBalancer
   selector:
-    app: david-front-end-site  # Fixed name
+    app: david-front-end-site  
   ports:
     - protocol: TCP
       port: 80
