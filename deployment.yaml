@@ -14,11 +14,11 @@ spec:
       labels:
         app: david-front-end-site  
     spec:
-      containers: 
       - name: david-front-end-site
-        image: davidbolarinwa/david_front-end_site:latest
-         ports:
-          - containerPort: 3000 
+        image: davidbolarinwa/david_front-end_site:1.0.0
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
