@@ -101,7 +101,17 @@ jobs:
         exit 1
         fi
 
-        echo "kubectl installed successfully!"
+        echo "kubectl installed ✅ Successfully!"
+        
+    - name: Update Kubeconfig
+      run: |
+          echo "Updating kubeconfig for EKS cluster..."
+          if aws eks update-kubeconfig --region us-east-1 --name devops-David-site-project; then
+            echo "✅ Successfully updated kubeconfig."
+          else
+            echo "❌ Error: Failed to update kubeconfig!" >&2
+            exit 1
+          fi    
 
 
 
