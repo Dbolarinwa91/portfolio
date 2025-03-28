@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: david_front-end_site
+  labels:
+    app: david_front-end_site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: david_front-end_site
+  template:
+    metadata:
+      labels:
+        app: david_front-end_site
+    spec:
+    containers:
+      - name: david_front-end_site
+        image: davidbolarinwa/david_front-end_site:latest
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: david_front-end_site
+spec:
+  type: LoadBalancer
+  selector:
+    app: david_front-end_site
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
