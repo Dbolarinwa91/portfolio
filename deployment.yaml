@@ -15,8 +15,8 @@ spec:
         app: david-front-end-site  
     spec:
       - name: david-front-end-site
-        image: davidbolarinwa/david_front-end_site:1.0.0
         imagePullPolicy: Always
+        image: davidbolarinwa/david_front-end_site:1.0.0
         ports:
           - containerPort: 3000
 ---
