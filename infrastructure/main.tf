@@ -1,4 +1,4 @@
-/*
+
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -80,8 +80,9 @@ module "eks" {
     }
   }
 }
-*/ 
+
 /*  [Making a new bucket ] depends_on = [aws_instance.web_server] */
+/*
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
@@ -95,3 +96,4 @@ module "s3_bucket" {
     enabled = true
   }
  }
+*/ 
