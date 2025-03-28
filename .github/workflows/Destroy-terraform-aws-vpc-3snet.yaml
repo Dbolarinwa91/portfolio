@@ -46,7 +46,7 @@ name: Destroy Terraform AWS VPC 3snet
 on:
   push:
     branches:
-      - main #
+      - master #
 permissions:
       id-token: write # This is required for aws oidc connection
       contents: read # This is required for actions/checkout

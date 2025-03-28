@@ -46,7 +46,7 @@ name: Build and deploy kubectl aws
 on:
   push:
     branches:
-      - master
+      - main
 permissions:
       id-token: write # This is required for aws oidc connection
       contents: read # This is required for actions/checkout
@@ -146,7 +146,7 @@ jobs:
 
         exit 1
         fi
-        
+
         echo "🔍 Verifying deployment..."
         if ! kubectl get pods | grep -q 'Running'; then
           echo "❌ Error: No running pods found after deployment!" >&2
