@@ -27,7 +27,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: david-frontend
+    app: david-front-end-site
   ports:
     - protocol: TCP
       port: 80
