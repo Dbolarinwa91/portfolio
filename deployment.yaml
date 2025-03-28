@@ -1,33 +1,33 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: david-front-end-site  
-  labels:
-    app: david-front-end-site 
+  name: david_front-end_site
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: david-front-end-site 
+      app: david_front-end_site
   template:
     metadata:
       labels:
-        app: david-front-end-site  
+        app: david_front-end_site
     spec:
-      - name: david-front-end-site
+      containers:
+      - name: david-front-end_site
         imagePullPolicy: Always
-        image: davidbolarinwa/david_front-end_site:1.0.0
+        image: davidbolarinwa/david_front-end_site:latest
         ports:
-          - containerPort: 3000
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: david-front-end-site 
+  name: qr-frontend-service
 spec:
   type: LoadBalancer
   selector:
-    app: david-front-end-site  
+    app: qr-frontend
   ports:
     - protocol: TCP
       port: 80
