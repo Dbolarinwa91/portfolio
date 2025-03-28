@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: david-front-end-site
-        imagePullPolicy: Always
+        imagePullPolicy: Always 
         image: davidbolarinwa/david_front-end_site:latest
         ports:
         - containerPort: 3000
