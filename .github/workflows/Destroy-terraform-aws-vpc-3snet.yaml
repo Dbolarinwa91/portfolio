@@ -43,57 +43,72 @@
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
 name: Destroy Terraform AWS VPC 3snet
+
 on:
   push:
     branches:
       - master 
+
 permissions:
-      id-token: write # This is required for aws oidc connection
-      contents: read # This is required for actions/checkout
-      pull-requests: write # This is required for gh bot to comment PR
+  id-token: write # Required for AWS OIDC connection
+  contents: read # Required for actions/checkout
+  pull-requests: write # Required for GH bot to comment PR
+
 env:
   TF_LOG: INFO
   AWS_REGION: ${{ secrets.AWS_REGION }}    
 
-
-
 jobs:
- terraform:
+  terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: .
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: checkout 
+    - name: Checkout Repository ✅
       uses: actions/checkout@v4
-    
-    - name: Setup Terraform
+
+    - name: Setup Terraform 🏗️
       uses: hashicorp/setup-terraform@v2
       with:
-          terraform_version: 1.11.0
+        terraform_version: 1.11.0
 
-    - name: Configure AWS credentials from AWS account
+    - name: Configure AWS Credentials 🔑
       uses: aws-actions/configure-aws-credentials@v4
       with:
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: GitHubActions
+        role-to-assume: ${{ secrets.AWS_ROLE }}
+        aws-region: ${{ secrets.AWS_REGION }}
+        role-session-name: GitHubActions
 
-    - name: Verifying and Applying Infrastructure Directory
+    - name: Verifying and Applying Infrastructure Directory 🏗️
       working-directory: infrastructure
       run: |
-          terraform --version # Print the current version of Terraform
-          pwd # Print the current working directory
-          ls -la
-          terraform init -migrate-state
-          terraform validate 
-          terraform plan -destroy
-          terraform Destroy -auto-approve
+        set -e  # Fail the script on any error
+        echo "🚀 Starting Terraform Deployment"
+        terraform --version  # Print the current Terraform version
+        pwd  # Print the working directory
+        ls -la  # List files for debugging
+        
+        echo "🔍 Initializing Terraform"
+        terraform init -migrate-state || { echo "❌ Terraform Init Failed!"; exit 1; }
+        
+        echo "✅ Terraform Initialized Successfully"
+        echo "🔍 Validating Terraform"
+        terraform validate || { echo "❌ Terraform Validation Failed!"; exit 1; }
+        
+        echo "✅ Terraform Validation Successful"
+        echo "🛠️ Running Terraform Plan (Destroy)"
+        terraform plan -destroy || { echo "❌ Terraform Plan Failed!"; exit 1; }
+        
+        echo "✅ Terraform Plan Completed"
+        echo "⚡ Applying Terraform Destroy"
+        terraform destroy -auto-approve || { echo "❌ Terraform Destroy Failed!"; exit 1; }
+        
+        echo "🎉 Terraform Destroy Completed Successfully!"
+
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
 #    - name: Terraform Apply
