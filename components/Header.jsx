@@ -1,9 +1,12 @@
-"use client"
+
+
 import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React from 'react'
 import { motion } from "motion/react"
-import Spline from '@splinetool/react-spline/next';
+
+
+
 
 const Header = () => {
   return (
@@ -52,11 +55,9 @@ const Header = () => {
             href="/sample-resume.pdf" download 
             className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
                 my resume <Image src={assets.download_icon} alt='' className='w-4'/></motion.a>
-        <div>
-           <Spline  scene="https://prod.spline.design/hyp7HjRYOHFn6wNa/scene.splinecode"/>
-                 
+       
         </div>
-        </div>
+       
     </div>
   )
 }
